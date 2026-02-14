@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { user } from "../data/mockReviews";
+import { user } from "../data/Reviews";
 
 export default {
   data() {

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { reviews, companyInfo } from "../data/mockReviews";
+import { reviews, companyInfo } from "../data/Reviews";
 
 export default {
   data() {
