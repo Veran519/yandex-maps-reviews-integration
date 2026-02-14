@@ -1,8 +1,8 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import { createRouter, createWebHistory } from "vue-router";
-import Login from "./components/Login.vue";
-import Reviews from "./components/Reviews.vue";
+import Login from "./views/Login.vue";
+import Reviews from "./views/Reviews.vue";
 
 const routes = [
   { path: "/", component: Login },
