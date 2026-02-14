@@ -1,26 +1,10 @@
 <template>
   <div class="sidebar">
-    <div class="sidebar-header">
-      <h2>Daily Grow</h2>
-      <p class="profile-name">{{ profileName }}</p>
-    </div>
-
-    <div class="sidebar-menu">
-      <button @click="$router.push('/settings')">
-        <span class="material-icons">settings</span>
-        Настройки
-      </button>
-
-      <button @click="$router.push('/reviews')">
-        <span class="material-icons">reviews</span>
-        Отзывы
-      </button>
-
-      <button @click="logout">
-        <span class="material-icons">logout</span>
-        Выйти
-      </button>
-    </div>
+    <p v-if="user">Привет, {{ user.name }}</p>
+    <nav>
+      <router-link to="/reviews">Отзывы</router-link>
+      <router-link to="/settings">Настройки</router-link>
+    </nav>
   </div>
 </template>
 
@@ -28,18 +12,21 @@
 export default {
   data() {
     return {
-      profileName: ''
-    }
-  },
-  mounted() {
-    this.profileName = localStorage.getItem('profileName') || 'Профиль'
-  },
-  methods: {
-    logout() {
-      localStorage.removeItem('token')
-      localStorage.removeItem('profileName')
-      this.$router.push('/')
-    }
+      user: JSON.parse(localStorage.getItem("user"))
+    };
   }
-}
+};
 </script>
+
+<style scoped>
+.sidebar {
+  padding: 20px;
+  background: #f2f2f2;
+  min-height: 100vh;
+}
+nav a {
+  display: block;
+  margin: 10px 0;
+  text-decoration: none;
+}
+</style>

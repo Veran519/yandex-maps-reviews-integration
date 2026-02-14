@@ -1,10 +1,17 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import './assets/style.css'
+import { createApp } from "vue";
+import App from "./App.vue";
+import { createRouter, createWebHistory } from "vue-router";
+import Login from "./components/Login.vue";
+import Reviews from "./components/Reviews.vue";
 
-const app = createApp(App)
+const routes = [
+  { path: "/", component: Login },
+  { path: "/reviews", component: Reviews }
+];
 
-app.use(router)
+const router = createRouter({
+  history: createWebHistory(),
+  routes
+});
 
-app.mount('#app')
+createApp(App).use(router).mount("#app");

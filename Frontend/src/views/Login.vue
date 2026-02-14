@@ -1,46 +1,46 @@
 <template>
-  <div class="container">
-    <h2>Вход</h2>
-
-    <input v-model="email" placeholder="Email" />
-    <br><br>
-
-    <input v-model="password" type="password" placeholder="Пароль" />
-    <br><br>
-
-    <button @click="login">Войти</button>
-
+  <div class="login">
+    <h2>Login</h2>
+    <input v-model="email" type="email" placeholder="Email" />
+    <input v-model="password" type="password" placeholder="Password" />
+    <button @click="login">Login</button>
     <p v-if="error" style="color:red">{{ error }}</p>
   </div>
 </template>
 
 <script>
-import api from '../axios'
+import { user } from "../data/mockReviews";
 
 export default {
   data() {
     return {
-      email: '',
-      password: '',
-      error: ''
-    }
+      email: "",
+      password: "",
+      error: ""
+    };
   },
   methods: {
-    async login() {
-      try {
-        const response = await api.post('/login', {
-          email: this.email,
-          password: this.password
-        })
-
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('profileName', response.data.user.name);
-
-        this.$router.push('/settings')
-      } catch (e) {
-        this.error = 'Неверный логин или пароль'
+    login() {
+      if (this.email === user.email && this.password === user.password) {
+        localStorage.setItem("user", JSON.stringify(user));
+        this.$router.push("/reviews");
+      } else {
+        this.error = "Неверный email или пароль";
       }
     }
   }
-}
+};
 </script>
+
+<style scoped>
+.login {
+  max-width: 300px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+button {
+  cursor: pointer;
+}
+</style>
