@@ -8,26 +8,23 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { user } from "../data/Reviews";
 
-export default {
-  data() {
-    return {
-      email: "",
-      password: "",
-      error: ""
-    };
-  },
-  methods: {
-    login() {
-      if (this.email === user.email && this.password === user.password) {
-        localStorage.setItem("user", JSON.stringify(user));
-        this.$router.push("/reviews");
-      } else {
-        this.error = "Неверный email или пароль";
-      }
-    }
+const email = ref("");
+const password = ref("");
+const error = ref("");
+
+const router = useRouter();
+
+const login = () => {
+  if (email.value === user.email && password.value === user.password) {
+    localStorage.setItem("user", JSON.stringify(user));
+    router.push("/reviews");
+  } else {
+    error.value = "Неверный email или пароль";
   }
 };
 </script>
@@ -44,4 +41,3 @@ button {
   cursor: pointer;
 }
 </style>
-
