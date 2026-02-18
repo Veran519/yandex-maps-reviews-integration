@@ -1,0 +1,17 @@
+{
+  "phpVersion": "8.2",
+  "install": [
+    "composer install --no-dev --optimize-autoloader"
+  ],
+  "extensions": [
+    "pdo_mysql",
+    "pdo",
+    "mbstring",
+    "openssl",
+    "tokenizer",
+    "xml",
+    "ctype",
+    "json",
+    "bcmath"
+  ]
+}
