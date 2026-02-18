@@ -1,17 +1,7 @@
 {
-  "phpVersion": "8.2",
-  "install": [
-    "composer install --no-dev --optimize-autoloader"
-  ],
-  "extensions": [
-    "pdo_mysql",
-    "pdo",
-    "mbstring",
-    "openssl",
-    "tokenizer",
-    "xml",
-    "ctype",
-    "json",
-    "bcmath"
-  ]
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "nixpacks",
+    "nixpacksConfigPath": "backend/nixpacks.toml"
+  }
 }
