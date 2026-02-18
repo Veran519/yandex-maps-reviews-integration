@@ -1,5 +1,5 @@
 // Тестовый пользователь
-export const user = {
+/*export const user = {
   name: "Вася Пупин",
   email: "test@test.com",
   password: "1234567"
@@ -15,4 +15,4 @@ export const companyInfo = {
 export const reviews = [
   { id: 1, author: "Петр", text: "Отличная компания!" },
   { id: 2, author: "Анна", text: "Все понравилось." }
-];
+];*/

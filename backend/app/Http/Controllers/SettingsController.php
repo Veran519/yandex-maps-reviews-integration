@@ -10,7 +10,11 @@ class SettingsController extends Controller
     public function save(Request $request) //функция для сохранения настроек (url) от яндекса
     {
         $request->validate([
-            'yandex_url' => 'required|string'
+            'yandex_url' => [
+                    'required',
+                    'url',
+                    'regex:/yandex\./'
+                            ]
         ]);
 
         $businessId = $this->extractBusinessId($request->yandex_url);
@@ -28,7 +32,25 @@ class SettingsController extends Controller
 
     private function extractBusinessId($url)    //Ищем id компании в url 
     {
-        preg_match('/org\/(\d+)/', $url, $matches);
-        return $matches[1] ?? null;
+        if (preg_match('/org\/(\d+)/', $url, $matches)) {
+        return $matches[1];
+        }
+
+        if (preg_match('/oid=(\d+)/', $url, $matches)) {
+            return $matches[1];
+        }
+
+        $decoded = urldecode($url);
+
+        if (preg_match('/oid=(\d+)/', $decoded, $m)) {
+            return $m[1];
+        }
+
+        return  null;
+    }
+
+    public function show(Request $request)
+    {
+        return $request->user()->company;
     }
 }

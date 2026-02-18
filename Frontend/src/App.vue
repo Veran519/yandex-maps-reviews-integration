@@ -1,20 +1,23 @@
 <template>
-  <div id="app">
-    <Sidebar />
-    <router-view></router-view>
+  <div class="app">
+    <Sidebar v-if="isAuth" />
+    <div class="page">
+      <Header v-if="isAuth" />
+      <router-view />
+    </div>
   </div>
 </template>
 
-<script>
-import Sidebar from "./components/Sidebar.vue";
+<script setup>
+import Sidebar from './components/Sidebar.vue'
+import Header from './components/Header.vue'
+import { isAuth } from './auth'
 
-export default {
-  components: { Sidebar }
-};
 </script>
 
-<style>
-#app {
-  display: flex;
+<style scoped>
+  .app {
+  height: 100vh;
 }
+
 </style>

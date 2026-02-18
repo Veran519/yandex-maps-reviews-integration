@@ -1,43 +1,53 @@
 <template>
   <div class="login">
-    <h2>Login</h2>
-    <input v-model="email" type="email" placeholder="Email" />
-    <input v-model="password" type="password" placeholder="Password" />
-    <button @click="login">Login</button>
-    <p v-if="error" style="color:red">{{ error }}</p>
+    <h2>Вход</h2>
+    <form class="userdata" @submit.prevent="makelogin">
+      <input v-model="email" placeholder="Email" />
+      <input v-model="password" type="password" placeholder="Пароль" />
+      <button>Войти</button>
+    </form>
+    <p v-if="error">{{ error }}</p>
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
-import { user } from "../data/Reviews";
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import axios from '../axios'
+import { login } from '../auth'
 
-const email = ref("");
-const password = ref("");
-const error = ref("");
-
+const email = ref('');
+const password = ref('');
+const error = ref('');
 const router = useRouter();
 
-const login = () => {
-  if (email.value === user.email && password.value === user.password) {
-    localStorage.setItem("user", JSON.stringify(user));
-    router.push("/reviews");
-  } else {
-    error.value = "Неверный email или пароль";
+async function makelogin() {
+  try {
+
+    const res = await axios.post('/login', {
+      email: email.value,
+      password: password.value
+    })
+
+    login(res.data.token, res.data.user);
+
+    router.push('/')
+  } catch {
+    error.value = 'Неверные данные'
   }
-};
+}
 </script>
 
 <style scoped>
 .login {
-  max-width: 300px;
-  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userdata {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-button {
-  cursor: pointer;
 }
 </style>

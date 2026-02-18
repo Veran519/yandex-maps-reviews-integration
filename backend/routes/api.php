@@ -25,5 +25,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/settings', [SettingsController::class, 'save']);
     Route::get('/reviews', [ReviewController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/settings', [SettingsController::class, 'show']);
 
 });
