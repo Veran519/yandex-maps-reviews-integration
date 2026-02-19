@@ -24,7 +24,7 @@ const router = useRouter();
 async function makelogin() {
   try {
 
-    const res = await axios.post('/login', {
+    const res = await axios.post('/api/login', {
       email: email.value,
       password: password.value
     })

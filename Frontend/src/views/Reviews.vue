@@ -31,7 +31,7 @@ const rating = ref(0)
 const total = ref(0)
 
 onMounted(async () => {
-  const res = await axios.get('/reviews')
+  const res = await axios.get('/api/reviews')
   reviews.value = res.data.reviews
   rating.value = res.data.rating
   total.value = res.data.total

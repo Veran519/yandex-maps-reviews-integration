@@ -27,7 +27,7 @@ const message = ref('');
 
 onMounted(async () => {
   try {
-    const res = await axios.get('/settings');
+    const res = await axios.get('/api/settings');
 
     if (res.data && res.data.yandex_url) {
       url.value = res.data.yandex_url;
@@ -39,7 +39,7 @@ onMounted(async () => {
 
 async function save() {
   try {
-    const res = await axios.post('/settings', {
+    const res = await axios.post('/api/settings', {
       yandex_url: url.value
     });
 
