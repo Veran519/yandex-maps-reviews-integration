@@ -32,21 +32,19 @@ class SettingsController extends Controller
 
     private function extractBusinessId($url)    //Ищем id компании в url 
     {
-        if (preg_match('/org\/(\d+)/', $url, $matches)) {
+        if (preg_match('/org\/[^\/]+\/(\d+)/', $url, $matches)) {
         return $matches[1];
-        }
+    }
 
-        if (preg_match('/oid=(\d+)/', $url, $matches)) {
-            return $matches[1];
-        }
+    if (preg_match('/oid=(\d+)/', $url, $matches)) {
+        return $matches[1];
+    }
 
-        $decoded = urldecode($url);
+    $decoded = urldecode($url);
 
-        if (preg_match('/oid=(\d+)/', $decoded, $m)) {
-            return $m[1];
-        }
-
-        return  null;
+    if (preg_match('/oid=(\d+)/', $decoded, $m)) {
+        return $m[1];
+    }
     }
 
     public function show(Request $request)
