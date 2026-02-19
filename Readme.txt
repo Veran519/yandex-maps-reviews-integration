@@ -28,15 +28,20 @@ Frontend: Vue 3, Vite, Axios
 	npm install
 	npm run dev
 5 Тестовый пользователь:
-Veran@yandex.ru
-qwerty12345
+Test@mail.com
+123456
 
-6 Файл бд скачать в закрепе
-7 Для демо используются заглушки отзывов фиксированная ссылка на Яндекс. Реальной интеграции реализовано не было. Полноценный макет из фигма был принят к рассмотрению, на его основе сделан свой пример:
-- Открыть демо:https://yandex-maps-reviews-integration-8w9.vercel.app/
-- Войти под пользователем:
-test@test.com
-1234567
--Страница с отзывами: рейтинг и отзывы отображаются.
+6. Тестовое задание готово.
+
+Демо: https://yandex-maps-reviews-integration-8w9.vercel.app/
+API: https://yandex-maps-reviews-integration-production.up.railway.app/
+GitHub: https://github.com/Veran519/yandex-maps-reviews-integration/tree/main
+
+Функционал:
+— регистрация(postman, отдельной компоненты неь)/логин
+— подключение Яндекс организации
+— загрузка и отображение отзывов
+
+Всё задеплоено и работает в production.
 
 
